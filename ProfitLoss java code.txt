@@ -1,0 +1,90 @@
+Profit and Loss (Using Methods) 
+ Sam purchased x dozens of toys at the rate of Rs. y per dozen. He sold each one of them at the rate of Rs. z. Can you please help him out percentage of profit? 
+Given the values of x, y and z, write a program to compute Sam's profit percentage. 
+
+Example: 
+Dozens of toys purchased (x) = 20 
+Rate per dozen (y) = Rs. 375 
+Selling price per toy (z) = Rs. 33 
+Cost Price of 1 toy = 375/12 = Rs. 31.25 
+Selling Price of 1 toy = Rs.33 
+Profit = 33 - 31.25 = Rs. 1.75 
+Profit % = 1.75 / 31.25 * 100 = 5.6% 
+ 
+Note: 
+●Use methods to modularize the program coded earlier for this problem statement. 
+●Create a method calculateProfit() with the below mentioned signature. 
+                  public float calculateProfit(int dozenCount, int pricePerDozen,  int sellPrice) 
+●Invoke this method from the main method. 
+ Input Format: 
+Input consists of 3 integers – x, y and z. 
+x - Number of dozens purchased. 
+y - Cost per dozen. 
+z - Selling price per item. 
+Output Format: 
+Refer Sample Input and Output for formatting details. The profit percentage needs to be printed correct to 2 decimal places. 
+
+Sample Input and Output: 
+Enter the number of dozens of toys purchased 
+20 
+Enter the price per dozen 
+375 
+Enter the selling price of 1 toy 
+33 
+Sam's profit percentage is 5.60 percent
+
+---------------------------------------------------------------------------------------
+Solution:
+
+package com.chainsys.ProfitLoss;
+
+import java.util.Scanner;
+
+public class Purchase {
+	
+	private static Scanner sc;
+	public static void main(String[] args) 
+	{
+		int numberofDozensPurchased;
+		int costPerDozen;
+		int sellingPricePerItem;
+		sc = new Scanner(System.in);
+		
+		System.out.print(" Enter the number of dozens of toys purchased  : ");
+		numberofDozensPurchased = sc.nextInt();
+		System.out.println("Enter the price per dozen : ");
+		costPerDozen = sc.nextInt();
+		System.out.print(" Enter the selling price of 1 toy  : ");
+		sellingPricePerItem = sc.nextInt();
+		
+	   profitOrloss(costPerDozen, sellingPricePerItem);
+	   
+	}
+	
+	public static void profitOrloss( float costPerDozen, float sellingPricePerItem )
+	{
+		float profitAmount=0;
+		float profitpercentage;
+		float costOfOneToy = costPerDozen/12;
+		
+		if(sellingPricePerItem>costOfOneToy) {
+			profitAmount = sellingPricePerItem - costOfOneToy;
+			System.out.println("Profit is "+profitAmount);
+			
+			profitpercentage = (profitAmount / costOfOneToy)*100;
+		    System.out.println("Sam's profit percentage is "+ profitpercentage+ " percent");
+		}else {
+			profitAmount = costOfOneToy - sellingPricePerItem;
+			System.out.println("Loss is "+profitAmount);
+			
+			profitpercentage = (profitAmount / costOfOneToy)*100;
+		      System.out.println("Sam's Loss percentage is "+ profitpercentage+ " percent");
+		}
+		
+		}	
+	}
+
+
+
+
+
