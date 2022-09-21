@@ -1,24 +1,31 @@
 package com.chainsys.user;
 
 public class Leave {
-	  
+	
+	private int leaveId;
 	private String leaveType;
-	private String from_Date;
+	private String fromDate;
 	private String toDate;
-	private String noOfDays;
-
-
+	private int noOfDays;
+	private int id;
+	
+	public int getLeaveId() {
+		return leaveId;
+	}
+	public void setLeaveId(int leaveId) {
+		this.leaveId = leaveId;
+	}
 	public String getLeaveType() {
 		return leaveType;
 	}
 	public void setLeaveType(String leaveType) {
 		this.leaveType = leaveType;
 	}
-	public String getFrom_Date() {
-		return from_Date;
+	public String getFromDate() {
+		return fromDate;
 	}
-	public void setFrom_Date(String from_Date) {
-		this.from_Date = from_Date;
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
 	}
 	public String getToDate() {
 		return toDate;
@@ -26,11 +33,16 @@ public class Leave {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getNoOfDays() {
+	public int getNoOfDays() {
 		return noOfDays;
 	}
-	public void setNoOfDays(String noOfDays) {
+	public void setNoOfDays(int noOfDays) {
 		this.noOfDays = noOfDays;
 	}
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 }
