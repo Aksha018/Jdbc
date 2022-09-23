@@ -3,8 +3,10 @@ package com.chainsys.user;
 public class Transaction {
 	private int transactionId;
 	private int userId;
+	private int receiverId;
 	private double indianRupees;
 	private double currency;
+	
 	public int getTransactionId() {
 		return transactionId;
 	}
@@ -28,6 +30,12 @@ public class Transaction {
 	}
 	public void setCurrency(double currency) {
 		this.currency = currency;
+	}
+	public int getReceiverId() {
+		return receiverId;
+	}
+	public void setReceiverId(int receiverId) {
+		this.receiverId = receiverId;
 	}
 	
 }

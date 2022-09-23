@@ -18,7 +18,7 @@ public class TransactionMain {
 		int userId;
 		double indianRupees;
 		double currency;
-		
+		int receiverId;
 
 	    double amount=0;
 	    double dollar, pound, euro;
@@ -31,7 +31,10 @@ public class TransactionMain {
 		System.out.println("Enter your User Id");
 		 userId = sc.nextInt();
 		 transaction.setUserId(userId);
-		
+		 
+		 System.out.println("Enter SendTo Id");
+		  receiverId = sc.nextInt();
+		 transaction.setReceiverId(receiverId);
 		 
 		 System.out.println("Following are the Choices:");
 		    System.out.println("Enter 1: Dollar");
@@ -69,9 +72,9 @@ public class TransactionMain {
 		 }
 		 TransactionDao.insertUser(transaction);
 		UserDao userDao= new UserDao();
-		userDao.transaction(amount);
+		userDao.transaction(amount,userId,receiverId);
 	}
-	
+		
 }
 
 	

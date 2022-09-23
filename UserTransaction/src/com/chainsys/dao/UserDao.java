@@ -75,10 +75,10 @@ Connection connection = ConnectionUtil.getConnection();
 
 	}
 	
-	public static int getSenderbalance() throws SQLException {
+	public static int getSenderbalance(int userId) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS WHERE USERID=100");
-
+		PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS WHERE USERID=?");
+		ps.setInt(1, userId);
 		ResultSet query = ps.executeQuery();
 		int balance = 0;
 		
@@ -91,9 +91,9 @@ Connection connection = ConnectionUtil.getConnection();
 
 }
 	
-	public static int getReceiverbalance() throws SQLException {
+	public static int getReceiverbalance(int userId) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS WHERE USERID=101");
+		PreparedStatement ps = connection.prepareStatement("SELECT * FROM USERS WHERE USERID=?");
 
 		ResultSet query = ps.executeQuery();
 		int balance = 0;
@@ -104,41 +104,41 @@ Connection connection = ConnectionUtil.getConnection();
 		return balance;
 	}
 
-	public static void updateSenderBalance(int balance) throws SQLException {
+	public static void updateSenderBalance(int balance,int userId) throws SQLException {
 
 		Connection connection = ConnectionUtil.getConnection();
 				
 				PreparedStatement ps = connection
-						.prepareStatement("UPDATE USERS SET BALANCE=? WHERE USERID=100");
+						.prepareStatement("UPDATE USERS SET BALANCE=? WHERE USERID=?");
 
 				
                 ps.setInt(1,balance);
-				
+				ps.setInt(2, userId);
 				int update = ps.executeUpdate();
 				System.out.println("Balance updated" + update);
 			}
-	public static void updateReceiverBalance(int balance) throws SQLException {
+	public static void updateReceiverBalance(int balance,int userId) throws SQLException {
 
 		Connection connection = ConnectionUtil.getConnection();
 				
 				PreparedStatement ps = connection
-						.prepareStatement("UPDATE USERS SET BALANCE=? WHERE USERID=101");
+						.prepareStatement("UPDATE USERS SET BALANCE=? WHERE USERID=?");
 
 				
                 ps.setInt(1,balance);
-				
+				ps.setInt(2, userId);
 				int update = ps.executeUpdate();
 				System.out.println("Balance updated" + update);
 			}
 	
-public void transaction(double transactionAmount) throws SQLException {
+public void transaction(double transactionAmount,int userId,int reciverId) throws SQLException {
 		
-		int getSenderbalance = getSenderbalance();
+		int getSenderbalance = getSenderbalance(userId);
 		double senderBalance = getSenderbalance - transactionAmount ;
-		int getReceiverbalance = getReceiverbalance();
+		int getReceiverbalance = getReceiverbalance(reciverId);
 		double receiverBalance = getReceiverbalance + transactionAmount;
-	    updateSenderBalance(getSenderbalance);
-	    updateReceiverBalance(getReceiverbalance);
+	    updateSenderBalance(getSenderbalance,userId);
+	    updateReceiverBalance(getReceiverbalance,reciverId);
 	}
 	
 }
